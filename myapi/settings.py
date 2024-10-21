@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-d5fz=c@&zc=hec5i-r=x*fwxmggqz6y6nhm-vokf+1^gt-3-ms
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+# settings.py
+API_KEY_CUSTOM_HEADER = "HTTP_X_API_KEY"
 
 SUPABASE_URL = 'https://ehezlanvbpvrdghpxmfy.supabase.co'
 SUPABASE_KEY= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVoZXpsYW52YnB2cmRnaHB4bWZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIxMTYwNzgsImV4cCI6MjAzNzY5MjA3OH0.qfGxmprTY154x7ZP20UxSXL4OXkWxB8WK1KN79qqChs'
@@ -41,8 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    "rest_framework_api_key",
     'updates',
-      'corsheaders',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +137,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# settings.py
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework_api_key.permissions.HasAPIKey",
+    ]
+}
